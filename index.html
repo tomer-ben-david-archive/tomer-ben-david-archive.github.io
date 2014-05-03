@@ -35,6 +35,16 @@ overview: true
     <div class="clear"></div>
   </div>
 </section>
+<section class="features">
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>
+</section>
 <section class="quickstart">
   <div class="grid">
     <div class="unit golden-small center-on-mobiles">
