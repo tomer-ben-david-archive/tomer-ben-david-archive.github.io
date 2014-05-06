@@ -14,6 +14,10 @@ def intme = 2 * 2 / 2
 var item = intme
 {% endhighlight %}
 
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/wyWI3gLpB8o/0.jpg)](http://www.youtube.com/watch?v=wyWI3gLpB8o)
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=cafyuhsDkzs" target="_blank"><img src="http://img.youtube.com/vi/cafyuhsDkzs/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
 Hey! After many months of hard work by Jekyll's contributors, we're excited
 to announce the first major release of the project in a long while. v1.0.0 is
 finally here! While the list of improvements and bug fixes is [quite lengthy][history],
