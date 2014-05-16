@@ -1,0 +1,17 @@
+---
+layout: news_item
+title: "What they didn't tell you aboutfunctional programming"
+date: "2014-05-02 02:12:52 +0200"
+author: Tomer Ben David 
+version: 1.0.0
+categories: [scala]
+---
+
+Hey! If you are new to functional programming or to xcel here are a few tips.
+
+
+
+{% highlight scala %}
+def intme = 2 * 2 / 2
+var item = intme
+{% endhighlight %}
