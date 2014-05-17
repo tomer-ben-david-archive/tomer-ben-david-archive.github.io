@@ -25,15 +25,15 @@
     <a href="/">Home</a>
   </li>
   <li class="">
-    <a href="/docs/home/">Doc<span class="show-on-mobiles">s</span><span class="hide-on-mobiles">umentation</span></a>
-  </li>
+    <a href="/news/">Posts</a>
+  </li>  
   <li class="">
-    <a href="/news/">News</a>
+    <a href="/docs/home/">Book<span class="show-on-mobiles"></span><span class="hide-on-mobiles">-Reviews</span></a>
   </li>
-  <li>
+<!--   <li>
     <a href="https://github.com/jekyll/help">Help</a>
   </li>
-  <li>
+ -->  <li>
     <a href="https://github.com/jekyll/jekyll"><span class="hide-on-mobiles">View on </span>GitHub</a>
   </li>
 </ul>
@@ -54,15 +54,15 @@
     <a href="/">Home</a>
   </li>
   <li class="">
-    <a href="/docs/home/">Doc<span class="show-on-mobiles">s</span><span class="hide-on-mobiles">umentation</span></a>
-  </li>
+    <a href="/news/">Posts</a>
+  </li>  
   <li class="">
-    <a href="/news/">News</a>
+    <a href="/docs/home/">Book<span class="show-on-mobiles"></span><span class="hide-on-mobiles">-Reviews</span></a>
   </li>
-  <li>
+<!--   <li>
     <a href="https://github.com/jekyll/help">Help</a>
   </li>
-  <li>
+ -->  <li>
     <a href="https://github.com/jekyll/jekyll"><span class="hide-on-mobiles">View on </span>GitHub</a>
   </li>
 </ul>
@@ -96,18 +96,47 @@ Being simple alone is not good enough so i'm also complex (I still hate complex 
     <div class="unit one-third">
       <h2>I'm Blog-aware</h2>
       <p>
-        I like writing blogs, book reviews, etc.
+        I have plenty of down to earth consice book reviews, blog posts, feel free to check them out.
       </p>
     </div>
     <div class="clear"></div>
   </div>
 </section>
+
+
+<section class="quickstart">
+    <p>
+      <div class="unit golden-small center-on-mobiles">
+        <h4><em>&nbsp;Recent Posts</em></h4>
+      </div>
+    </p>
+</section>
+
 <section class="features">
-<ul>
-  
-    <li>
-      <a href="/news/2014/05/02/jarjar-commandline/">Using jarjar to create scala-library with prefix</a>
-      <p>Hey! You can use jarjar like this uu</p>
+  <div class="grid">
+    <p>
+      <ul>
+        
+          <li>
+            <a href="/news/2014/05/02/what-they-didnt-tell-you-about-functional-programming/">What they didn't tell you aboutfunctional programming</a>
+            <p>Hey! If you are new to functional programming or to xcel here are a few tips.</p>
+
+<p>You must understand that <em>map, Future, Monad, flatMap</em> are an inherent part of the system.  They have tweaks and are unfortunately hard to understand.  You must understand very well the mechanisms behind them.  I will try to help you with that.</p>
+
+<p>So</p>
+
+<p>Repeat after me:</p>
+
+<p>map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map</p>
+
+<p>I hope you feel more comfortable with <em>map</em> now.  Now that it&#8217;s part of your dictionary lets drill down into it.</p>
+
+
+          </li>
+        
+          <li>
+            <a href="/news/2014/05/02/jarjar-commandline/">Using jarjar to create scala-library with prefix</a>
+            <p>Hey! You can use jarjar like this uu</p>
 
 <div class="highlight"><pre><code class="scala"><span class="k">def</span> <span class="n">intme</span> <span class="k">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="k">var</span> <span class="n">item</span> <span class="k">=</span> <span class="n">intme</span>
@@ -132,61 +161,10 @@ examples and for compiling this list):</p>
 <p>Take a look at the <a href="/docs/upgrading/">Upgrading</a> page in the docs for more detailed information.</p>
 
 
-    </li>
-  
-</ul>
-</section>
-<section class="quickstart">
-  <div class="grid">
-    <div class="unit golden-small center-on-mobiles">
-      <h4>Get up and running <em>in&nbsp;seconds</em>.</h4>
-    </div>
-    <div class="unit golden-large code">
-      <p class="title">Quick-start Instructions</p>
-      <div class="shell">
-        <p class="line">
-          <span class="path">~</span>
-          <span class="prompt">$</span>
-          <span class="command">gem install jekyll</span>
-        </p>
-        <p class="line">
-          <span class="path">~</span>
-          <span class="prompt">$</span>
-          <span class="command">jekyll new my-awesome-site</span>
-        </p>
-        <p class="line">
-          <span class="path">~</span>
-          <span class="prompt">$</span>
-          <span class="command">cd my-awesome-site</span>
-        </p>
-        <p class="line">
-          <span class="path">~/my-awesome-site</span>
-          <span class="prompt">$</span>
-          <span class="command">jekyll serve</span>
-        </p>
-        <p class="line">
-          <span class="output"># => Now browse to http://localhost:4000</span>
-        </p>
-      </div>
-    </div>
-    <div class="clear"></div>
-  </div>
-</section>
-<section class="free-hosting">
-  <div class="grid">
-    <div class="unit whole">
-      <div class="grid pane">
-        <div class="unit whole center-on-mobiles">
-          <img src="img/octojekyll.png" width="300" height="251" alt="Free Jekyll hosting on GitHub Pages">
-          <div class="pane-content">
-            <h2 class="center-on-mobiles"><strong>Free hosting</strong> with GitHub Pages</h2>
-            <p>Sick of dealing with hosting companies? <a href="http://pages.github.com/">GitHub Pages</a> are <em>powered by Jekyll</em>, so you can easily deploy your site using GitHub for free&mdash;<a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">custom domain name</a> and&nbsp;all.</p>
-            <a href="http://pages.github.com/">Learn more about GitHub Pages &rarr;</a>
-          </div>
-        </div>
-        <div class="clear"></div>
-      </div>
-    </div>
+          </li>
+        
+      </ul>
+    </p>
   </div>
 </section>
 
