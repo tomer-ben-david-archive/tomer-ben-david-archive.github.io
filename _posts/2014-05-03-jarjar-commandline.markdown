@@ -7,7 +7,7 @@ version: 1.0.0
 categories: [scala]
 ---
 
-Hey! You can use jarjar like this uu
+Hey! You can use jarjar like this u
 
 {% highlight scala %}
 def intme = 2 * 2 / 2
