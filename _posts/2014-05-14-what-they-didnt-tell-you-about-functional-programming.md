@@ -1,3 +1,4 @@
+---
 layout: news_item
 title: "What they didn't tell you aboutfunctional programming"
 date: "2014-05-02 02:12:52 +0200"
