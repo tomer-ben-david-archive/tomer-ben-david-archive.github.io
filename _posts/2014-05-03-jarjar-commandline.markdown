@@ -2,7 +2,7 @@
 layout: news_item
 title: "Using jarjar to create scala-library with prefix"
 date: "2014-05-02 02:12:52 +0200"
-author: Tomer Ben David 
+author: Tomer-Ben-David 
 version: 1.0.0
 categories: [scala]
 ---
