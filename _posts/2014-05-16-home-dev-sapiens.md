@@ -2,7 +2,7 @@
 layout: news_item
 title: "homo-dev-sapiens"
 date: "2014-05-16 21:30:35 +0200"
-author: Tomer Ben David 
+author: Tomer-Ben-David 
 version: 1.0.0
 categories: [software-development, philosophy]
 ---
