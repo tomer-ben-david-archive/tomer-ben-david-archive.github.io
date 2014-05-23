@@ -75,7 +75,7 @@
   <section class="intro">
   <div class="grid">
     <div class="unit whole center-on-mobiles">
-      <p class="first">T<br>On Programming</p>
+      <p class="first">Tomer Ben-David<br>On Programming</p>
     </div>
   </div>
 </section>
@@ -84,7 +84,7 @@
     <div class="unit one-third">
       <h2>I'm Simple</h2>
       <p>
-If there is anything I like is dead simple, clean beautiful code.  As I see things, "Clean Code" book is the bible for *dev-sapiens*.
+If there is anything I like is dead simple, clean beautiful code.  As I see things, "Clean Code" book is the bible for *dev-sapiens-sapiens*.
       </p>
     </div>
     <div class="unit one-third">
@@ -118,20 +118,58 @@ Being simple alone is not good enough so i'm also complex (I still hate complex 
       <ul>
         
           <li>
-            <a href="/news/2014/05/15/what-they-didnt-tell-you-about-functional-programming/">Book review - functional programming in scala</a>
+            <a href="/news/2014/05/16/home-dev-sapiens/">homo-dev-sapience</a>
+            <p><em>homo-dev-sapience</em> has long ago gone beyond the <em>software-development</em> realm into others.  for example releasing <em>homo-sapience-sapience</em> from the <a href="http://soylent.me">burden of eating - Soylent</a>.  Into aeronautics, medicine, physics and the rest of the world problems.</p>
+
+<p>The way the <em>homo-dev-sapience</em> works, is, it identifies a problem, and then:</p>
+
+<ol>
+  <li>He opens a bug in its favorite ticket system.  (I like <a href="http://trac.edgewall.org">trac</a>) (humans waste time in eating it costs lot of money and energy)</li>
+  <li>He does some research and breaks the problem into subproblems and thus opens sub-tasks.</li>
+  <li>Moves the task into <em>in-progress</em> and starts working on it. </li>
+  <li>Once he finished, moves it into <em>fixed</em> and releases a POC like soylent.  There is some beta era and after that GA.</li>
+  <li>Bug moves into closed status.</li>
+</ol>
+
+<p>In a few years <em>homo-dev-sapience</em> will finish resolving more and more of world most difficult problems unsolved by people proficient in its domain field.  It&#8217;s percentage in population is growing higher and higher.  We expect by a few years most of <em>homo-sapience-sapience</em> being extinct by <em>homo-dev-sapience</em> just as happened to <em>homo-n-1</em> by <em>homo-n</em>, afterwards we can highly expect the dev-sapience to be extinct by the <em>robot-sapience-sapience</em>, its own creation this time.</p>
+
+
+          </li>
+        
+          <li>
+            <a href="/news/2014/05/14/book-review-functional-programming-in-scala/">Book review - functional programming in scala</a>
             <p>This is the book we have been waiting for.</p>
 
-<p>The good: It provides what you wanted and what it&#8217;s title is - &#8220;Functional programming in scala - indeed.&#8221;
-The bad: No jokes, no real fun.  I like books with jokes and fun, the author does a good job in describing the issue in a very clear way, but hey couldn&#8217;t they put some fun into the book? (kinda learn you a haskell for a great good)</p>
+<p>The good: It provides what you wanted and what it&#8217;s title is - &#8220;Functional programming in Scala - indeed.&#8221;
+The bad: No jokes, no real fun.  I like books with jokes and fun, the author does a good job in describing the issue in a very clear way, but hey couldn&#8217;t they put some fun into the book? (kinda learn you a Haskell for a great good)</p>
 
-<p>CHAPTER 2: A very good job in describing functions.  In currying, partial functions, how generics or polymorphic functions as they are named play a big role.  Why most of framework functions are like someFunc(A, B, C).  Does a real good job on this.  It&#8217;s still an introduction to the whole subject, but overall, by the end of this chapter, you will get to know tail recursion, generics (or type parameters) currying, partial functions, how to compose functoins, why its like solving equations and stuff like that.</p>
+<p>CHAPTER 2: A very good job in describing functions.  In currying, partial functions, how generics or polymorphic functions as they are named play a big role.  Why most of framework functions are like someFunc(A, B, C).  Does a real good job on this.  It&#8217;s still an introduction to the whole subject, but overall, by the end of this chapter, you will get to know tail recursion, generics (or type parameters) currying, partial functions, how to compose functions, why its like solving equations and stuff like that.</p>
+
+<p>CHAPTER 3: Lot of exercises in this chapter.  You have to decide at this point if you are going to go through all exercises which will take a huge amount of time, but you will definitely profit from them they are great for getting familiar and understanding this hard material.  Now as for the chapter, again, it does a good job explaining ADT, <em>abstract data types</em>.  While is does not go a long way to describe this vague <em>ADT</em> theoretical concept, or the concept itself, it describes how you define such ADT in Scala.  You then have to do some deduction in order to understand this generic ADT concept.  Now as for the examples these are List, Tree.  Basically in List you have some multiple constructors where you can create such lists, and do some operations on them like Cons.  It does some work on describing how to keep the implementation efficient as you want, does it in tail recursion, and the implementations are clean.  In general it also emphasizes on the concept that whenever you see some repeating code you should generalize it and in case of functional programming you do it with extracting the operations which <em>look alike</em> let it be add or multiplication and extract it into a function parameter &#8216;f&#8217; which you pass into the function any local variables you would use go into arguments into that &#8216;f&#8217;.</p>
+
+
+          </li>
+        
+          <li>
+            <a href="/news/2014/05/02/what-they-didnt-tell-you-about-functional-programming/">What they didn't tell you about functional programming</a>
+            <p>Hey! If you are new to functional programming or to scala here are a few tips.</p>
+
+<p>You must understand that <em>map, Future, Monad, flatMap</em> are an inherent part of the system.  They have tweaks and are unfortunately hard to understand.  You must understand very well the mechanisms behind them.  I will try to help you with that.</p>
+
+<p>So</p>
+
+<p>Repeat after me:</p>
+
+<p>map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map</p>
+
+<p>I hope you feel more comfortable with <em>map</em> now.  Now that it&#8217;s part of your dictionary lets drill down into it.</p>
 
 
           </li>
         
           <li>
             <a href="/news/2014/05/02/jarjar-commandline/">Using jarjar to create scala-library with prefix</a>
-            <p>Hey! You can use jarjar like this uu</p>
+            <p>Hey! You can use jarjar like this u</p>
 
 <div class="highlight"><pre><code class="scala"><span class="k">def</span> <span class="n">intme</span> <span class="k">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="k">var</span> <span class="n">item</span> <span class="k">=</span> <span class="n">intme</span></code></pre></div>
@@ -153,23 +191,6 @@ examples and for compiling this list):</p>
 </ul>
 
 <p>Take a look at the <a href="/docs/upgrading/">Upgrading</a> page in the docs for more detailed information.</p>
-
-
-          </li>
-        
-          <li>
-            <a href="/news/2014/05/02/book-review-functional-programming-in-scala/">What they didn't tell you aboutfunctional programming</a>
-            <p>Hey! If you are new to functional programming or to xcel here are a few tips.</p>
-
-<p>You must understand that <em>map, Future, Monad, flatMap</em> are an inherent part of the system.  They have tweaks and are unfortunately hard to understand.  You must understand very well the mechanisms behind them.  I will try to help you with that.</p>
-
-<p>So</p>
-
-<p>Repeat after me:</p>
-
-<p>map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map, map</p>
-
-<p>I hope you feel more comfortable with <em>map</em> now.  Now that it&#8217;s part of your dictionary lets drill down into it.</p>
 
 
           </li>
