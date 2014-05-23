@@ -30,23 +30,23 @@ Let's say you want to load some configuration from disk and lets say this config
 Lets first load the configurations into our properties.
 
 {% highlight scala %}
-	val internalProps = new Properties()
-	val externalProps = new Properties();
-	extenralProps.load(new FileInputStream(new File("external.properties")))
-	defaultProps.load(new FileInputStream(new File("default.properties")))
+val internalProps = new Properties()
+val externalProps = new Properties();
+extenralProps.load(new FileInputStream(new File("external.properties")))
+defaultProps.load(new FileInputStream(new File("default.properties")))
 {% endhighlight %}
 
 Now lets load a properties with default - *no partially applied func here*.
 
 {% highlight scala %}
-	val someValFromConf = externalProperties.get("key", defaultProperties.get("key"))
+val someValFromConf = externalProperties.get("key", defaultProperties.get("key"))
 {% endhighlight %}
 
 Now let's partially apply props to already contain the internal defaults
 
 {% highlight scala %}
-	def getOrDefault(externalProps: Properties, defaultProps: Properties)(key: String) = props.externalProps.getProperty(key, props.defaultProps.getProperty(key))
-	val get = getOrDefault(externalProps, defaultProps) _ // nasty underscore --> partially applying alarm.
+def getOrDefault(externalProps: Properties, defaultProps: Properties)(key: String) = props.externalProps.getProperty(key, props.defaultProps.getProperty(key))
+val get = getOrDefault(externalProps, defaultProps) _ // nasty underscore --> partially applying alarm.
 {% endhighlight %}
 
 Well here we first defined a method named *getOrDefault* which is aware of both external and default properties, so far so good, I mean, we are talking here about *File*, *FileInputStream*, *Properties*, *def*, all is clear and nice and dandy isn't it???
@@ -64,6 +64,6 @@ so we can call *key* method any number of times we want, isn't that nice, its al
 So now we can call *get* like this:
 
 {% highlight scala %}
-	val value = get("key1") // low and behold, the function is already aware of the external,internal props.
-	val value = get("key2") // low and behold, the function is already aware of the external,internal props.
+val value = get("key1") // low and behold, the function is already aware of the external,internal props.
+val value = get("key2") // low and behold, the function is already aware of the external,internal props.
 {% endhighlight %}
