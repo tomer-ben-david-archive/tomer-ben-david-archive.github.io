@@ -2,7 +2,7 @@
 layout: news_item
 title: "Book review - functional programming in scala"
 date: "2014-05-14 02:12:52 +0200"
-author: Tomer Ben David 
+author: Tomer-Ben-David 
 version: 1.0.0
 categories: [scala, functional-programming]
 ---
