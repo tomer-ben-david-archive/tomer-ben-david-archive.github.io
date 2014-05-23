@@ -1,6 +1,6 @@
 ---
 layout: news_item
-title: "Dear lord - yesterday I partially applied a function, why like this?"
+title: "Dear Lord - yesterday I partially applied a function, why like this?"
 date: "2014-05-23 10:25:10 +0200"
 author: Tomer-Ben-David 
 version: 1.0.0
