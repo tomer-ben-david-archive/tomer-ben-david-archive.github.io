@@ -51,7 +51,7 @@ val get = getOrDefault(externalProps, defaultProps) _ // nasty underscore --> pa
 
 Well here we first defined a method named *getOrDefault* which is aware of both external and default properties, so far so good, I mean, we are talking here about *File*, *FileInputStream*, *Properties*, *def*, all is clear and nice and dandy isn't it???
 
-**AND HERE COMES THE TWIST IN THE STORY!! THERE IS AN UNDERSTORE!**
+**AND HERE COMES THE TWIST IN THE STORY!! THERE IS AN UNDERSCORE!**
 
 *The story of a method called only with some of its arguments*
 
