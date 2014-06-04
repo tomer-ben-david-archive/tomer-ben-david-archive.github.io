@@ -33,6 +33,19 @@ def myMethod: ValidationNel[String, RealResult] = {
 }
 {% endhighlight %}
 
+Now the question is, how do you parse back the results from validation? I mean so you did the validation and you have a validation object returned back.  What do you do with it?
+
+Good question, for one case you can match on the result as following:
+
+{% highlight scala %}
+import scalaz.{Success => SuccessZ, Failure => FailureZ}
+
+validationResult match {
+  case SuccessZ(r) => println (s"hip hip $r hurrah!")
+  case FailureZ(e) => println (s"sh*t sh*t $e s***ty")
+}
+{% endhighlight %}
+
 That's all for today.  And if you want to repeat the mantra after all then, repeat after me:
 
 ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel.
