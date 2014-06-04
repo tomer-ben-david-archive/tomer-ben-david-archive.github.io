@@ -10,8 +10,8 @@ categories: [scala,functional-programming]
 
 You can use scalaz `ValidationNel` (non empty list guaranteed) to hold one of two values, `success` or `failure `one.  Basically you will have two types involved.
 
-The success type.
-The failure type.
+The `success type`.
+The `failure type`.
 
 The success type will be the actual type you return, the one you want.
 The failure type can be `String` with a message (this is what most of examples you will encounter will show), but in real life ofcourse you would not want just a `String` but a type which will hold various stuff about your error, like error type from enum maybe and more details on error, could be even the stacktrace for better debugging, and a message ofcourse.
