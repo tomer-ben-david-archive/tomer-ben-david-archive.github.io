@@ -23,7 +23,7 @@ And for the bored programmers of our time you can event invest the time to repla
 I'm taking you as a serious developer transitioning into a more `fp` language, like `scala`.
 However if you have transitioned to `scala`.  So in scala we are very used to having `traits` everywhere, and hell, i mean
 everywhere.  Not a single `impl` without an `interface`.  However if you noticed then in 99% of cases the traits are in same
-`files` as the implementations.  Not to mentioned you have the 'sealed` option which will force you to have it in same file.
+`files` as the implementations.  Not to mentioned you have the `sealed` option which will force you to have it in same file.
 And thus the `-api` `-impl` is gone.  So lets acknowledge it at least.
 
 We have disregarded the sepration between the `-api` and `-impl` because we use traits all over the place.  And you know what?
