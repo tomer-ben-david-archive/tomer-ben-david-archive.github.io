@@ -72,50 +72,162 @@
 </header>
 
 
-  <section class="intro">
-  <div class="grid">
-    <div class="unit whole center-on-mobiles">
-      <p class="first">Tomer Ben-David<br>On Programming</p>
-    </div>
-  </div>
-</section>
-<section class="features">
-  <div class="grid">
-    <div class="unit one-third">
-      <h2>I'm Simple</h2>
-      <p>
-If there is anything I like is dead simple, clean beautiful code.  As I see things, "Clean Code" book is the bible for *dev-sapiens-sapiens*.
-      </p>
-    </div>
-    <div class="unit one-third">
-      <h2>I'm Complex</h2>
-<p>
-Being simple alone is not good enough so i'm also complex (I still hate complex code don't get me wrong here...)
-</p>
-    </div>
-    <div class="unit one-third">
-      <h2>I'm Blog-aware</h2>
-      <p>
-        I have plenty of down to earth consice book reviews, blog posts, feel free to check them out.
-      </p>
-    </div>
-    <div class="clear"></div>
-  </div>
-</section>
-
-
-<section class="quickstart">
-    <p>
-      <div class="unit golden-small center-on-mobiles">
-        <h4><em>&nbsp;Recent Posts</em></h4>
-      </div>
-    </p>
-</section>
-
-<section class="features">
+  <section class="features">
   <div class="grid">
     <p>
       <ul>
+        
+          <li>
+            <a href="/news/2014/07/02/scalaz-validation-demistified-validationnel/">Scalaz validation demistified (although some clouds are still upon it)</a>
+            <p>You can use scalaz <code>ValidationNel</code> (non empty list guaranteed) to hold one of two values, <code>success</code> or <code>failure </code>one.  Basically you will have two types involved.</p>
+
+<p>The <code>success type</code>.
+The <code>failure type</code>.</p>
+
+<p>The success type will be the actual type you return, the one you want.
+The failure type can be <code>String</code> with a message (this is what most of examples you will encounter will show), but in real life ofcourse you would not want just a <code>String</code> but a type which will hold various stuff about your error, like error type from enum maybe and more details on error, could be even the stacktrace for better debugging, and a message ofcourse.</p>
+
+<p>So lets say our actual type is <code>Produce</code> (the success type).  And our failure type (i&#8217;m falling into this like the others) is <code>String</code>.</p>
+
+<p>When you return something from your method you will use <code>successNel</code> for the successful type and (you guessed) <code>failureNel</code> for the failure type.  The part which might mix you up (see below example so will be clarified) is that when you return the successful type you use successNel[FailureType] - thats right you specify the failureType because the success type is already in there.  And when you return the failureType you use failNel[SuccessType] <strong>not intuitive at all!</strong> but it works.</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">import</span> <span class="nn">scalaz._</span>
+<span class="k">import</span> <span class="nn">Scalaz._</span>
+
+<span class="k">def</span> <span class="n">myMethod</span><span class="k">:</span> <span class="kt">ValidationNel</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">RealResult</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+	<span class="n">parsedVal</span> <span class="k">=</span> <span class="n">parseIt</span><span class="o">()</span>
+	<span class="n">parsedVal</span> <span class="k">match</span> <span class="o">{</span>
+		<span class="k">case</span> <span class="nc">Success</span><span class="o">(</span><span class="n">s</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">s</span><span class="o">.</span><span class="n">successNel</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="c1">// String is our failure type - bah that&#39;s the way it is!</span>
+		<span class="k">case</span> <span class="nc">Failure</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">getMessage</span><span class="o">.</span><span class="n">failNel</span><span class="o">[</span><span class="kt">RealResult</span><span class="o">]</span> <span class="c1">// bah! passing in type of real result on failure while failure is a string.</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Now the question is, how do you parse back the results from validation? I mean so you did the validation and you have a validation object returned back.  What do you do with it?</p>
+
+<p>Good question, for one case you can match on the result as following:</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">import</span> <span class="nn">scalaz.</span><span class="o">{</span><span class="nc">Success</span> <span class="k">=&gt;</span> <span class="nc">SuccessZ</span><span class="o">,</span> <span class="nc">Failure</span> <span class="k">=&gt;</span> <span class="nc">FailureZ</span><span class="o">}</span>
+
+<span class="n">validationResult</span> <span class="k">match</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nc">SuccessZ</span><span class="o">(</span><span class="n">r</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">println</span> <span class="o">(</span><span class="n">s</span><span class="s">&quot;hip hip $r hurrah!&quot;</span><span class="o">)</span>
+  <span class="k">case</span> <span class="nc">FailureZ</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">println</span> <span class="o">(</span><span class="n">s</span><span class="s">&quot;sh*t sh*t $e s***ty&quot;</span><span class="o">)</span>
+<span class="o">}</span></code></pre></div>
+
+<p>That&#8217;s all for today.  And if you want to repeat the mantra after all then, repeat after me:</p>
+
+<p>ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel, ValidationNel.</p>
+
+
+          </li>
+        
+          <li>
+            <a href="/news/2014/06/28/quick-android-programming-introduction/">Quick android programming introductoin</a>
+            <p>Hello, so yo wanna do some android development and is bombed by <code>intents</code>, <code>activities</code>, <code>services</code> etc?  Lets tidy up the stuff in our head a bissale.  You need to understand there are a very few concepts you have to understand in order to start android development.  These concepts are very few but you must first understand them, otherwise you get lost.  So lets get done with it.</p>
+
+<p>First thing you will notice is that the following components are very decoupled.  I mean the next concepts solve a problem, how to build an android app (they can also solve a generic problem on how to build an app), but they are customized for mobile apps.  So when you ask yourself why do I need an intent when I can just do something else instead, you must understand that its very nice to have an android app decoulped like that becuase it helps in many ways, instead of sending a message inside your app you use an <code>intent</code> and in the same way you can send an intent to take a picture so its a common ground the language of the mobile.</p>
+
+<ol>
+  <li><strong>Android application</strong> - Let&#8217;s treat it as a web site this is your whole application, although you can modularize your app into multiple apps (for example an app that handles the data and an app that handles the ui), for the sake of the concept an android application is similar to a whole web site.  Now an activity has multiple states (complex), <code>paused</code> for example is when its like you long click the mid button and thus you see your app partially on screen, this is the <code>pause</code> state.</li>
+  <li><strong>Activity</strong> - treat it as a web page or a single screen that the user will interact with.</li>
+  <li><strong>Intent</strong> - Either inside your app or external, you want to take a picture, this is an action cross component, you will not start an <code>intent</code> for every button click, but if it should trigger another app showing up like <code>contacts book</code> then this is the way to notify the android app manager this is what you wish to do.</li>
+  <li><strong>Service</strong> - Pretty much parallel to <code>Activity</code> however without UI.  Services do not run on their own thread they run in your own UI thread, that means if you should be aware of it and you should not run long running processes in it.  If you do need your service to run in its different thread you should be using <code>worker threads</code></li>
+  <li><strong>Broadcasts</strong> - In this way you can get notifications about general events such as <code>system booted up</code> note that there is no notion in android for a service which starts up in startup and the <code>OS</code> will be responsible for it being up, you should do that by means of listening to broadcase system booted up and start up your service (and handle its failures).</li>
+  <li><strong>Widget</strong> You know what a <code>widget</code> is i don&#8217;t need to explain to you, what you need to be aware of is that programming model is very simple component much similar to broadcasts its listening to events and reacting.</li>
+</ol>
+
+<p>In addition you should be aware that every app has its own process, its own <code>linux user</code> is practically created for it (app_id123).</p>
+
+
+          </li>
+        
+          <li>
+            <a href="/news/2014/06/23/honey-i-lost-the-api-project/">Honey I lost the api project</a>
+            <p>If you are like me and you have some java background then you like your projects structured in this way:</p>
+
+<div class="highlight"><pre><code class="scala"><span class="n">mynice</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">api</span>
+<span class="n">mynice</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">impl</span>
+
+<span class="n">myothernice</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">api</span>
+<span class="n">myothernice</span><span class="o">-</span><span class="n">project</span><span class="o">-</span><span class="n">impl</span></code></pre></div>
+
+<p>Because in this project construction methodology you have a clear separation between your api&#8217;s and implementations.  Or
+so to say you can use your favorite build tool to have your project compile against the <code>api</code> and run with the <code>impl</code>.
+And for the bored programmers of our time you can event invest the time to replace your <code>impl1</code> by <code>impl-mock</code>.  However,
+I&#8217;m taking you as a serious developer transitioning into a more <code>fp</code> language, like <code>scala</code>.
+However if you have transitioned to <code>scala</code>.  So in scala we are very used to having <code>traits</code> everywhere, and hell, i mean
+everywhere.  Not a single <code>impl</code> without an <code>interface</code>.  However if you noticed then in 99% of cases the traits are in same
+<code>files</code> as the implementations.  Not to mentioned you have the <code>sealed</code> option which will force you to have it in same file.
+And thus the <code>-api</code> <code>-impl</code> is gone.  So lets acknowledge it at least.</p>
+
+<p>We have disregarded the sepration between the <code>-api</code> and <code>-impl</code> because we use traits all over the place.  And you know what?
+So far its working well for us, i mean, any serious programmer will enforce coding to an interface, so this separation of projects
+is actually redundant for us, we even got half the amount of projects to maintain.  Seriously how many times did you really replace that
+<code>impl</code> project with another one? I&#8217;ve seen hundreds of projects with that seperation and in none of them it was actually replaced. so
+lets at least acknowledge it.  And with the new programming paradigm, its so easy to create <code>interfaces</code> we do it all over, and we don&#8217;t need
+another project to convince us we need to create such a new interface.</p>
+
+<p>And you know what? if you really really need such separation in a specific place go ahead, but no reason to have it all over the place cluttering
+our project workspace.</p>
+
+
+          </li>
+        
+          <li>
+            <a href="/news/2014/05/23/partially-applied-functions-fully-understandable-example/">Dear Lord - yesterday I partially applied a function, why like this?</a>
+            <p>So you want to <em>partially apply</em> a function but don&#8217;t know why?  This post is for you.  Here we will show you why you did need to partially apply a function (why it helped you).  And how nice and easy this process can be.</p>
+
+<p>Although in <em>scala</em> the process for partially applying a function is just as complex and as encrypted as far as they could think of we will try to make it easy for you.  (they really thought hard how to make it encrypted and un-remembable).</p>
+
+<p>So let&#8217;s dig in.</p>
+
+<p>But first I would like to ask you to repeat the mantra:</p>
+
+<p>partial-applied-function, partial-applied-function, partial-applied-function, partial-applied-function, partial-applied-function, partial-applied-function, partial-applied-function, partial-applied-function, partial-applied-function.</p>
+
+<p>Now that you are familiar with it let&#8217;s repeat the scala partially applied function mantra.</p>
+
+<p>oh-lord-its-with-space-and-underscore<em>, oh-lord-its-with-space-and-underscore</em>, oh-lord-its-with-space-and-underscore<em>, oh-lord-its-with-space-and-underscore</em>, oh-lord-its-with-space-and-underscore<em>, oh-lord-its-with-space-and-underscore</em>, oh-lord-its-with-space-and-underscore<em>, oh-lord-its-with-space-and-underscore</em>, oh-lord-its-with-space-and-underscore_.</p>
+
+<p>Let&#8217;s continue to dig in.</p>
+
+<p>Let&#8217;s say you want to load some configuration from disk and lets say this configuration is in the form of properties.  You wish to have a primary file and a secondary, like external configuration file which will override internal.
+(For real life if you use java I would recommend you to use already existing mechanisms such as spring who would do that for you or scala typesafe config manager which would also do that for you).  But for the sake of the example lets use plan <em>properties</em>.  </p>
+
+<p>Lets first load the configurations into our properties.</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">val</span> <span class="n">internalProps</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">()</span>
+<span class="k">val</span> <span class="n">externalProps</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+<span class="n">extenralProps</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">&quot;external.properties&quot;</span><span class="o">)))</span>
+<span class="n">defaultProps</span><span class="o">.</span><span class="n">load</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">&quot;default.properties&quot;</span><span class="o">)))</span></code></pre></div>
+
+<p>Now lets load a properties with default - <em>no partially applied func here</em>.</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">val</span> <span class="n">someValFromConf</span> <span class="k">=</span> <span class="n">externalProperties</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="s">&quot;key&quot;</span><span class="o">,</span> <span class="n">defaultProperties</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="s">&quot;key&quot;</span><span class="o">))</span></code></pre></div>
+
+<p>Now let&#8217;s partially apply props to already contain the internal defaults</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">def</span> <span class="n">getOrDefault</span><span class="o">(</span><span class="n">externalProps</span><span class="k">:</span> <span class="kt">Properties</span><span class="o">,</span> <span class="n">defaultProps</span><span class="k">:</span> <span class="kt">Properties</span><span class="o">)(</span><span class="n">key</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="n">props</span><span class="o">.</span><span class="n">externalProps</span><span class="o">.</span><span class="n">getProperty</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">props</span><span class="o">.</span><span class="n">defaultProps</span><span class="o">.</span><span class="n">getProperty</span><span class="o">(</span><span class="n">key</span><span class="o">))</span>
+<span class="k">val</span> <span class="n">get</span> <span class="k">=</span> <span class="n">getOrDefault</span><span class="o">(</span><span class="n">externalProps</span><span class="o">,</span> <span class="n">defaultProps</span><span class="o">)</span> <span class="k">_</span> <span class="c1">// nasty underscore --&gt; partially applying alarm.</span></code></pre></div>
+
+<p>Well here we first defined a method named <em>getOrDefault</em> which is aware of both external and default properties, so far so good, I mean, we are talking here about <em>File</em>, <em>FileInputStream</em>, <em>Properties</em>, <em>def</em>, all is clear and nice and dandy isn&#8217;t it???</p>
+
+<p><strong>AND HERE COMES THE TWIST IN THE STORY!! THERE IS AN UNDERSCORE!</strong></p>
+
+<p><em>The story of a method called only with some of its arguments</em></p>
+
+<p><em>getOrDefault</em> accepts three arguments, <em>externalProps</em> and <em>defaultProps</em>, and a <em>key</em>, what would happen if we called it with only a single argument? it would not compile right? but we added <strong>THE UNDERSCORE</strong>.</p>
+
+<p>So as we added the underscore <em>scala</em> understands it should <strong>PARTIALLY APPLY</strong> meaning it calls them method with a single argument and as we have an <strong>_</strong> it does not run it.  Also note we are assigning the return value to a <strong>val</strong> so we have now got a new method called <strong>get</strong> and as we already passed to its origin method the first argument, we can call get only with the key.</p>
+
+<p>so we can call <em>key</em> method any number of times we want, isn&#8217;t that nice, its already aware of the first two arguments.  That&#8217;s the <em>functional</em> way of doing so.  If we wanted to do so in <em>java</em> we would need to create an object initialize it with some members and call it, here all got shorter, and <em>immutable</em>.</p>
+
+<p>So now we can call <em>get</em> like this:</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">val</span> <span class="n">value</span> <span class="k">=</span> <span class="n">get</span><span class="o">(</span><span class="s">&quot;key1&quot;</span><span class="o">)</span> <span class="c1">// low and behold, the function is already aware of the external,internal props.</span>
+<span class="k">val</span> <span class="n">value</span> <span class="k">=</span> <span class="n">get</span><span class="o">(</span><span class="s">&quot;key2&quot;</span><span class="o">)</span> <span class="c1">// low and behold, the function is already aware of the external,internal props.</span></code></pre></div>
+
+
+          </li>
         
           <li>
             <a href="/news/2014/05/16/home-dev-sapiens/">homo-dev-sapience</a>
@@ -131,7 +243,11 @@ Being simple alone is not good enough so i'm also complex (I still hate complex 
   <li>Bug moves into closed status.</li>
 </ol>
 
-<p>In a few years <em>homo-dev-sapience</em> will finish resolving more and more of world most difficult problems unsolved by people proficient in its domain field.  It&#8217;s percentage in population is growing higher and higher.  We expect by a few years most of <em>homo-sapience-sapience</em> being extinct by <em>homo-dev-sapience</em> just as happened to <em>homo-n-1</em> by <em>homo-n</em>, afterwards we can highly expect the dev-sapience to be extinct by the <em>robot-sapience-sapience</em>, its own creation this time.</p>
+<p>&#171;&#171;&#171;&lt; HEAD
+In a few years <em>homo-dev-sapience</em> will finish resolving more and more of world most difficult problems unsolved by people proficient in its domain field.  It&#8217;s percentage in population is growing higher and higher.  We expect by a few years most of <em>homo-sapience-sapience</em> being extinct by <em>homo-dev-sapience</em> just as happened to <em>homo-n-1</em> by <em>homo-n</em>, afterwards we can highly expect the dev-sapience to be extinct by the <em>robot-sapience-sapience</em>, its own creation this time.
+=======
+In a few years <em>homo-dev-sapiens</em> will finish resolving more and more of world most difficult problems unsolved by people proficient in its domain field.  It&#8217;s percentage in population is growing higher and higher.  We expect by a few years most of <em>homo-sapiens-sapiens</em> being extinct by <em>homo-dev-sapiens</em> just as happened to <em>homo-n-1</em> by <em>homo-n</em>, afterwards we can highly expect the dev-sapiens to be extinct by the <em>robot-sapiens-sapiens</em>, its own creation this time.
+&#187;&#187;&#187;&gt; 8287ada5f392e9467feb5acfc9fcf37acf8df7c1</p>
 
 
           </li>
@@ -200,6 +316,45 @@ examples and for compiling this list):</p>
   </div>
 </section>
 
+<!--
+<section class="intro">
+  <div class="grid">
+    <div class="unit whole center-on-mobiles">
+      <p class="first">Tomer Ben-David<br>On Programming</p>
+    </div>
+  </div>
+</section>
+<section class="features">
+  <div class="grid">
+    <div class="unit one-third">
+      <h2>I'm Simple</h2>
+      <p>
+If there is anything I like is dead simple, clean beautiful code.  As I see things, "Clean Code" book is the bible for *dev-sapiens-sapiens*.
+      </p>
+    </div>
+    <div class="unit one-third">
+      <h2>I'm Complex</h2>
+<p>
+Being simple alone is not good enough so i'm also complex (I still hate complex code don't get me wrong here...)
+</p>
+    </div>
+    <div class="unit one-third">
+      <h2>I'm Blog-aware</h2>
+      <p>
+        I have plenty of down to earth consice book reviews, blog posts, feel free to check them out.
+      </p>
+    </div>
+    <div class="clear"></div>
+  </div>
+</section>
+<section class="quickstart">
+    <p>
+      <div class="unit golden-small center-on-mobiles">
+        <h4><em>&nbsp;Recent Posts</em></h4>
+      </div>
+    </p>
+</section>
+-->
 
   <footer>
   <div class="grid">

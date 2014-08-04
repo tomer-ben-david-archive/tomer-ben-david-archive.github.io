@@ -15,7 +15,7 @@ mynice-project-impl
 
 myothernice-project-api
 myothernice-project-impl
-{% endhighlight }
+{% endhighlight %}
 
 Because in this project construction methodology you have a clear separation between your api's and implementations.  Or
 so to say you can use your favorite build tool to have your project compile against the `api` and run with the `impl`.
