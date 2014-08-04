@@ -1,6 +1,6 @@
 ---
 layout: news_item
-title: "Quick android programming introductoin"
+title: "Quick android programming introduction"
 date: "2014-06-28 09:12:11 +0200"
 author: Tomer-Ben-David 
 version: 1.0.0
