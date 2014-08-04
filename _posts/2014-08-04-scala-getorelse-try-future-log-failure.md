@@ -1,7 +1,7 @@
 ---
 layout: news_item
 title: "Log failures in scala getorelse, try, future"
-date: "2014-06-28 21:12:11 +0200"
+date: "2014-08-04 21:12:11 +0200"
 author: Tomer-Ben-David 
 version: 1.0.0
 categories: [scala,functional-programming]
