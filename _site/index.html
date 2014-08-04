@@ -121,6 +121,25 @@ The failure type can be <code>String</code> with a message (this is what most of
           </li>
         
           <li>
+            <a href="/news/2014/06/28/scala-getorelse-try-future-log-failure/">Log failures in scala getorelse, try, future</a>
+            <p>Hello, so yo wanna log a failure in a less intrusive way than <code>pattern-matching</code> and in a more elegant way in scala but don&#8217;t know how?  Read below&#8230;</p>
+
+<p>Pattern matching is good, but, its for newbies.  If you are a serious scala developer you should use the more advanced <code>fp</code> programming tools provided.  For example - <code>for</code> :)  </p>
+
+<p>But, you may ask, when I use the plain <code>fors</code> I loose the ability to do something with the failures, and, yes, its not straight forward, and indeed when using <code>for comprehension</code> its not immediate to get the failure, but only successes.  Fortunately the previous sentence is incorrect, and <code>for comprehension</code> in scala provides you a way to get the failure.  So here is an example of how to use <code>for</code> doing something with the <code>successful</code> value and printing to log the errornous value.</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">for</span> <span class="o">{</span>
+      <span class="n">futureResult</span> <span class="k">&lt;-</span> <span class="nc">Try</span><span class="o">(</span><span class="nc">Future</span><span class="o">[</span><span class="kt">MyResponse</span><span class="o">](</span><span class="n">doSomeOp</span><span class="o">()))</span> <span class="c1">// get back the value of the try which is a future.</span>
+    <span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
+      <span class="n">futureResult</span> <span class="c1">// if successful we get to here, and we return the future result.</span>
+    <span class="o">}</span> <span class="n">recover</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="n">e</span> <span class="k">=&gt;</span> <span class="nc">LOG</span><span class="o">.</span><span class="n">warn</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="n">getMessage</span><span class="o">)</span> <span class="c1">// in case of an error we get to recover and we print the exception. vwalla!</span>
+    <span class="o">}</span></code></pre></div>
+
+
+          </li>
+        
+          <li>
             <a href="/news/2014/06/28/quick-android-programming-introduction/">Quick android programming introductoin</a>
             <p>Hello, so yo wanna do some android development and is bombed by <code>intents</code>, <code>activities</code>, <code>services</code> etc?  Lets tidy up the stuff in our head a bissale.  You need to understand there are a very few concepts you have to understand in order to start android development.  These concepts are very few but you must first understand them, otherwise you get lost.  So lets get done with it.</p>
 
