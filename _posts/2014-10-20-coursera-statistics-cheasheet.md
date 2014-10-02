@@ -1,7 +1,7 @@
 ---
 layout: news_item
 title: "Coursera statistics cheatsheet"
-date: "2014-02-02 03:12:42 +0200"
+date: "2014-10-02 03:12:42 +0200"
 author: Tomer-Ben-David 
 version: 1.0.0
 comments: true
