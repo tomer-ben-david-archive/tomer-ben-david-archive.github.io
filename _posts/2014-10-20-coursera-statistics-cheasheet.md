@@ -8,4 +8,5 @@ comments: true
 categories: [math,statistics,online-courses]
 ---
 
-<iframe frameborder="0" height="1000" src="https://docs.google.com/spreadsheets/d/1x7YdhdOufY4ywv5eZHIftAlRN0hZyi60JcEI-MHyThs/pubhtml?widget=true&amp;headers=false" width="100%"></iframe>
+<iframe frameborder="0" height="1000" src="https://docs.google.com/spreadsheets/d/1x7YdhdOufY4ywv5eZHIftAlRN0hZyi60JcEI-MHyThs/pubhtml?widget=true&amp;headers=false" 
+width="100%"></iframe>
