@@ -20,66 +20,48 @@ Embeeding riemann with an example:
 1. Including riemann in your maven dependencies.
 
 {% highlight xml %}
-        <dependency>
-            <groupId>riemann</groupId>
-            <artifactId>riemann</artifactId>
-            <version>0.2.6</version>
-        </dependency>
+	<dependency>
+	    <groupId>riemann</groupId>
+	    <artifactId>riemann</artifactId>
+	    <version>0.2.6</version>
+	</dependency>
 {% endhighlight %}
 
-place `riemann.conf` in project root folder.
+2. place `riemann.conf` in project root folder.
 
 example `riemann.conf`
 
 {% highlight clojure %}
-; -*- mode: clojure; -*-
-; vim: filetype=clojure
+	; -*- mode: clojure; -*-
+	; vim: filetype=clojure
 
-(logging/init {:file "riemann.log"})
+	(logging/init {:file "riemann.log"})
 
-; Listen on the local interface over TCP (5555), UDP (5555), and websockets
-; (5556)
-(let [host "127.0.0.1"]
-  (tcp-server {:host host})
-  (udp-server {:host host})
-  (ws-server  {:host host}))
+	; Listen on the local interface over TCP (5555), UDP (5555), and websockets
+	; (5556)
+	(let [host "127.0.0.1"]
+	  (tcp-server {:host host})
+	  (udp-server {:host host})
+	  (ws-server  {:host host}))
 
-; Expire old events from the index every 5 seconds.
-(periodically-expire 5)
+	; Expire old events from the index every 5 seconds.
+	(periodically-expire 5)
 
-(let [index (index)]
-  ; Inbound events will be passed to these streams:
-  (streams
-    (default :ttl 60
-      ; Index all events immediately.
-      index
+	(let [index (index)]
+	  ; Inbound events will be passed to these streams:
+	  (streams
+	    (default :ttl 60
+	      ; Index all events immediately.
+	      index
 
-      ; Log expired events.
-      (expired
-        (fn [event] (info "expired" event))))))
-{% endhighlight %}
----
-
-
-Scala map and flatMap are surely mixing map, I mean mixing map, I  mean mixing up.
-
-Let's start simple;  All of those `map`, `flatMap` are methods of some `classes` (for the sake of explanation classes, interfaces, whatever).  So they all work on some kind of an encapsulation.  `map` and `flatMap` are methods of `Option`, of `List`, of `Future`.
-
-If you look at `map` and `flatMap` method signatures you will see:
-{% highlight scala %}
-// for `Future`
-
-    def map[S](f: (T) ⇒ S)(implicit executor: ExecutionContext): Future[S]
-    def flatMap[S](f: (T) ⇒ Future[S])(implicit executor: ExecutionContext): Future[S]
-
-// for `List`
-
-    def map[B](f: (A) ⇒ B): List[B]
-    def flatMap[B](f: (A) ⇒ GenTraversableOnce[B]): List[B]
-
-// and for `Option`
-
-	def map[B](f: (A) ⇒ B): Option[B]
-    def flatMap[B](f: (A) ⇒ Option[B]): Option[B]
+	      ; Log expired events.
+	      (expired
+	        (fn [event] (info "expired" event))))))
 {% endhighlight %}
 
+3. In your `main()` method start up riemann in your process (or in your webapp)
+{% highlight java %}
+    public static void main(String[] args) throws Exception {
+        riemann.bin.main(new String[]{"riemann.config"});
+    }
+{% endhighlight %}
