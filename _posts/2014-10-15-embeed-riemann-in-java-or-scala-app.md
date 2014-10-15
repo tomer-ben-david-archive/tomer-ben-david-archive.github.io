@@ -28,7 +28,7 @@ Embeeding riemann with an example:
 </dependency>
 {% endhighlight %}
 
-## place `riemann.conf` in project root folder.
+## place riemann.conf in project root folder.
 
 example `riemann.conf`
 
@@ -67,7 +67,7 @@ public static void main(String[] args) throws Exception {
 }
 {% endhighlight %}
 
-## Sending example event to this local `riemann`
+## Sending example event to this local riemann
  
 {% highlight java %}
 RiemannClient c = RiemannClient.tcp("localhost", 5555);
