@@ -20,11 +20,11 @@ Embeeding riemann with an example:
 # Including riemann in your maven dependencies.
 
 {% highlight xml %}
-	<dependency>
-	    <groupId>riemann</groupId>
-	    <artifactId>riemann</artifactId>
-	    <version>0.2.6</version>
-	</dependency>
+<dependency>
+    <groupId>riemann</groupId>
+    <artifactId>riemann</artifactId>
+    <version>0.2.6</version>
+</dependency>
 {% endhighlight %}
 
 # place `riemann.conf` in project root folder.
@@ -32,54 +32,54 @@ Embeeding riemann with an example:
 example `riemann.conf`
 
 {% highlight clojure %}
-	; -*- mode: clojure; -*-
-	; vim: filetype=clojure
+; -*- mode: clojure; -*-
+; vim: filetype=clojure
 
-	(logging/init {:file "riemann.log"})
+(logging/init {:file "riemann.log"})
 
-	; Listen on the local interface over TCP (5555), UDP (5555), and websockets
-	; (5556)
-	(let [host "127.0.0.1"]
-	  (tcp-server {:host host})
-	  (udp-server {:host host})
-	  (ws-server  {:host host}))
+; Listen on the local interface over TCP (5555), UDP (5555), and websockets
+; (5556)
+(let [host "127.0.0.1"]
+  (tcp-server {:host host})
+  (udp-server {:host host})
+  (ws-server  {:host host}))
 
-	; Expire old events from the index every 5 seconds.
-	(periodically-expire 5)
+; Expire old events from the index every 5 seconds.
+(periodically-expire 5)
 
-	(let [index (index)]
-	  ; Inbound events will be passed to these streams:
-	  (streams
-	    (default :ttl 60
-	      ; Index all events immediately.
-	      index
+(let [index (index)]
+  ; Inbound events will be passed to these streams:
+  (streams
+    (default :ttl 60
+      ; Index all events immediately.
+      index
 
-	      ; Log expired events.
-	      (expired
-	        (fn [event] (info "expired" event))))))
+      ; Log expired events.
+      (expired
+        (fn [event] (info "expired" event))))))
 {% endhighlight %}
 
 # In your `main()` method start up riemann in your process (or in your webapp)
 {% highlight java %}
-    public static void main(String[] args) throws Exception {
-        riemann.bin.main(new String[]{"riemann.config"});
-    }
+public static void main(String[] args) throws Exception {
+    riemann.bin.main(new String[]{"riemann.config"});
+}
 {% endhighlight %}
 
 # Sending example event to this local `riemann`
  
 {% highlight java %}
-    RiemannClient c = RiemannClient.tcp("localhost", 5555);
-    c.connect();
-    c.event().
-            service("fridge").
-            state("running").
-            metric(new Random().nextDouble()).
-            tags("appliance", "cold").
-            send();
-    
-    c.query("tagged \"cold\" and metric > 0"); // => List<Event>;
-    c.disconnect();
+RiemannClient c = RiemannClient.tcp("localhost", 5555);
+c.connect();
+c.event().
+        service("fridge").
+        state("running").
+        metric(new Random().nextDouble()).
+        tags("appliance", "cold").
+        send();
+
+c.query("tagged \"cold\" and metric > 0"); // => List<Event>;
+c.disconnect();
 {% endhighlight %}
 
 # Lets view some results - Install a local riemann dash
