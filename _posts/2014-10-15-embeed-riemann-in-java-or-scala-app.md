@@ -7,6 +7,7 @@ version: 1.0.0
 comments: true
 categories: [monitoring]
 ---
+# Introducing Riemann
 
 Have you been finding yourself lately coding complex logic for deciding when to send an `alert`? If yes `riemann` is for you.  You can define cewl `DSL`s for `CEP` logic for when to send an alert (or whatever else).
 
