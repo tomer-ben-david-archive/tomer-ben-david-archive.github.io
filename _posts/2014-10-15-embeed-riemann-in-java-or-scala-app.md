@@ -17,7 +17,7 @@ Only two caveats with it are:
 
 Embeeding riemann with an example:
 
-# Including riemann in your maven dependencies.
+## Including riemann in your maven dependencies.
 
 {% highlight xml %}
 <dependency>
@@ -27,7 +27,7 @@ Embeeding riemann with an example:
 </dependency>
 {% endhighlight %}
 
-# place `riemann.conf` in project root folder.
+## place `riemann.conf` in project root folder.
 
 example `riemann.conf`
 
@@ -59,14 +59,14 @@ example `riemann.conf`
         (fn [event] (info "expired" event))))))
 {% endhighlight %}
 
-# In your `main()` method start up riemann in your process (or in your webapp)
+## In your main() method start up riemann in your process (or in your webapp)
 {% highlight java %}
 public static void main(String[] args) throws Exception {
     riemann.bin.main(new String[]{"riemann.config"});
 }
 {% endhighlight %}
 
-# Sending example event to this local `riemann`
+## Sending example event to this local `riemann`
  
 {% highlight java %}
 RiemannClient c = RiemannClient.tcp("localhost", 5555);
@@ -82,7 +82,7 @@ c.query("tagged \"cold\" and metric > 0"); // => List<Event>;
 c.disconnect();
 {% endhighlight %}
 
-# Lets view some results - Install a local riemann dash
+## Lets view some results - Install a local riemann dash
 I don't want to clutter my local environment with it so i'll just use `docker` to install `riemann-dash`
 
 {% highlight bash %}
