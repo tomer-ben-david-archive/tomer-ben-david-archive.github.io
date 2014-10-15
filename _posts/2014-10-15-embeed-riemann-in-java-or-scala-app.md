@@ -65,3 +65,5 @@ example `riemann.conf`
         riemann.bin.main(new String[]{"riemann.config"});
     }
 {% endhighlight %}
+
+source code available at: [github source code](https://github.com/tomer-ben-david/TestEmbeedRiemann)
