@@ -1,6 +1,6 @@
 ---
 layout: news_item
-title: "Embeed riemann in java or scala app"
+title: "Embed riemann in java or scala app"
 date: "2014-10-15 02:22:12 +0200"
 author: Tomer-Ben-David 
 version: 1.0.0
@@ -10,13 +10,7 @@ categories: [monitoring]
 # Introducing Riemann
 
 Have you been finding yourself lately coding complex logic for deciding when to send an `alert`? If yes `riemann` is for you.  You can define cewl `DSL`s for `CEP` logic for when to send an alert (or whatever else).
-
-Only two caveats with it are:
-
-1. It's not distributed.  Meaning ofcourse you can `shard` your data and have multiple `riemann` servers, however I would rather it be a cluster.
-2. What if for whatever reason I cannot reach `riemann` server, this means alerts are not sent.  For that reason you want also some `alert` sending logic in your client code.  So instead of coding your own alert logic in your client code, I would suggest `embeeding` riemann in your local process.  That would mean however that you have no control over which `DSL` users which be coding into your local riemann server thus it will consume `memory/cpu` based on `DSL`s defined, currently no way over it except for convention, use simpler rules on client.  Do not query for events 5 weeks ago.
-
-Embeeding riemann with an example:
+Embedding riemann with an example:
 
 ## Including riemann in your maven dependencies.
 
