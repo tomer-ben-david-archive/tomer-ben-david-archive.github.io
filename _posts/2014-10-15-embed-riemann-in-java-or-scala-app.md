@@ -10,6 +10,7 @@ categories: [monitoring]
 # Introducing Riemann
 
 Have you been finding yourself lately coding complex logic for deciding when to send an `alert`? If yes `riemann` is for you.  You can define cewl `DSL`s for `CEP` logic for when to send an alert (or whatever else).
+
 Embedding riemann with an example:
 
 ## Including riemann in your maven dependencies.
@@ -93,5 +94,10 @@ b56feebb5913: Download complete
 
 Then navigate to: [http://localhost:4567/](http://localhost:4567/)
 next this is a little tricky.  You will see a big `Riemann` word on your screen. **Click it**.  Then click `e` this will edit it.  Choose `Gauge` in the textbox type `true` this means your query filter is for everything.  Next use the client to send some more data you will see this metric changes online realtime with your data!
+
+# Resource
+* Excellent [riemann.config guide](https://github.com/jdmaturen/reimann/blob/master/riemann.config.guide)
+
+# Source Code
 
 source code available at: [github source code](https://github.com/tomer-ben-david/TestEmbeedRiemann)
