@@ -12,13 +12,13 @@ akka-spray-tomcat-example
 
 akka spray tomcat example in scala
 
-# Having serialization done by json spray for you
+## Having serialization done by json spray for you
 
 Lets say you have the following case class (important its a case class for regular classes you will need something a little different)
 
-```scala
+{% highglight scala %}
 case class Person(val name: String)
-```
+{% endhighlight %}
 
 and you want json-spray to serialize it you will need the define the following implicit
 you can just define it beside your case class in the same file.
@@ -38,7 +38,7 @@ new Person("somename").toJson
 
 note the `1` in `jsonFormat1` this means your case class has single parameter if it had 2  you would use... `jsonFormat2` :)
 
-# Async with Future
+## Async with Future
 Remember: spray uses a single actor to handle incoming requests.  This means you cannot run any blocking code in the handling actor.
 
 ```scala
@@ -63,7 +63,7 @@ complete {
 
 you may need to define above the `implicit executionContext` that the `Future` will run in and also the `implicit timeout`
 
-# Being async
+## Being async
 now if you want to handle your request in an async way you don't really need to create actors
 spray can do that for you just wrap your handling with `detach {` as following:
 
