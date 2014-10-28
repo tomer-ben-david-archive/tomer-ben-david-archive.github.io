@@ -63,7 +63,7 @@ complete {
 
 you may need to define above the `implicit executionContext` that the `Future` will run in and also the `implicit timeout`
 
-## Being async
+## Async with `detach`
 now if you want to handle your request in an async way you don't really need to create actors
 spray can do that for you just wrap your handling with `detach {` as following:
 
